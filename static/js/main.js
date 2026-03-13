@@ -85,8 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- API Calls & Data Logic ---
     
-    const API_BASE_URL = 'https://finance-manger.onrender.com';
-
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -101,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
             day: 'numeric'
         });
     };
+
+    const API_BASE_URL = 'https://finance-manger.onrender.com';
 
     const fetchSummary = async () => {
         try {
