@@ -85,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- API Calls & Data Logic ---
     
+    const API_BASE_URL = 'https://finance-manger.onrender.com';
+
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchSummary = async () => {
         try {
-            const res = await fetch('/api/summary');
+            const res = await fetch(`${API_BASE_URL}/api/summary`);
             const data = await res.json();
             
             summaryBalance.textContent = formatCurrency(data.balance);
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const fetchTransactions = async () => {
         try {
-            const res = await fetch('/api/transactions');
+            const res = await fetch(`${API_BASE_URL}/api/transactions`);
             const data = await res.json();
             
             transactionsBody.innerHTML = '';
@@ -257,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         const isEdit = !!transactionId;
-        const url = isEdit ? `/api/transactions/${transactionId}` : '/api/transactions';
+        const url = isEdit ? `${API_BASE_URL}/api/transactions/${transactionId}` : `${API_BASE_URL}/api/transactions`;
         const method = isEdit ? 'PUT' : 'POST';
         
         try {
@@ -293,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!confirm('Are you sure you want to delete this transaction?')) return;
         
         try {
-            const res = await fetch(`/api/transactions/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/transactions/${id}`, {
                 method: 'DELETE'
             });
             
